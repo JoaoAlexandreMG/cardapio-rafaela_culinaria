@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cardápio • Rafaela Culinária</title>
+  <meta name="theme-color" content="#f8bbd9" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rose-50: #fdf2f8;
+      --rose-100: #fce7f3;
+      --rose-200: #fbcfe8;
+      --rose-300: #f9a8d4;
+      --rose-400: #f472b6;
+      --rose-500: #ec4899;
+      --rose-600: #db2777;
+      --rose-700: #be185d;
+      --white: #ffffff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --radius: 16px;
+      --radius-lg: 20px;
+      --radius-xl: 24px;
+      
+      --gradient-rose: linear-gradient(135deg, var(--rose-400) 0%, var(--rose-500) 100%);
+      --gradient-soft: linear-gradient(135deg, var(--rose-200) 0%, var(--rose-300) 100%);
+      --gradient-bg: linear-gradient(180deg, var(--rose-50) 0%, var(--white) 40%, var(--gray-50) 100%);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html, body {
+      margin: 0;
+      background: var(--gradient-bg);
+      color: var(--gray-800);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===== HEADER ===== */
+    .hero {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 20px;
+      border-bottom: 1px solid var(--rose-200);
+      box-shadow: 0 2px 20px rgba(236, 72, 153, 0.08);
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--rose-100);
+    }
+    
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--white);
+      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid var(--rose-200);
+      flex-shrink: 0;
+    }
+    
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    
+    .titles {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .titles h1 {
+      margin: 0 0 4px 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--rose-600);
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+    
+    .subtitle {
+      font-size: 14px;
+      color: var(--gray-600);
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    
+    /* search */
+    .searchbar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    
+    .input {
+      flex: 1;
+      background: var(--gray-50);
+      border: 2px solid var(--rose-100);
+      padding: 14px 18px;
+      border-radius: 12px;
+      color: var(--gray-800);
+      outline: none;
+      font-size: 15px;
+      font-weight: 400;
+      transition: all 0.2s ease;
+      box-shadow: none;
+    }
+    
+    .input:focus {
+      border-color: var(--rose-400);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.08);
+    }
+    
+    .input::placeholder {
+      color: var(--gray-500);
+      font-weight: 400;
+    }
+    
+    .btn {
+      background: var(--gradient-rose);
+      border: none;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(236, 72, 153, 0.2);
+      flex-shrink: 0;
+    }
+    
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+    }
+
+    /* ===== CATEGORY TABS ===== */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      padding: 16px 20px;
+      overflow-x: auto;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .tab {
+      padding: 12px 18px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      border: 2px solid var(--rose-200);
+      background: var(--white);
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--gray-700);
+    }
+    
+    .tab:hover {
+      border-color: var(--rose-300);
+      transform: translateY(-1px);
+    }
+    
+    .tab.active {
+      background: var(--gradient-rose);
+      border-color: transparent;
+      color: white;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+
+    
+    /* ===== GRID ===== */
+    .wrap {
+      padding: 20px 20px 120px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .group {
+      margin-bottom: 32px;
+    }
+    
+    .group h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      margin: 0 0 24px;
+      color: var(--rose-600);
+      text-align: center;
+      position: relative;
+      letter-spacing: -0.5px;
+    }
+    
+    .group h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: var(--gradient-rose);
+      border-radius: 2px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1fr;
+    }
+    
+    @media (min-width: 640px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .wrap {
+        padding: 24px 32px 120px;
+      }
+      .tabs {
+        padding: 20px 32px;
+      }
+      .hero {
+        padding: 20px 32px;
+      }
+    }
+    
+    .card {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--rose-100);
+      padding: 20px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-rose);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--rose-200);
+    }
+    
+    .card:hover::before {
+      opacity: 1;
+    }
+    
+    .badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--gradient-rose);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 50px;
+      box-shadow: var(--shadow-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .minimo {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 11px;
+      font-weight: 500;
+      background: var(--rose-100);
+      color: var(--rose-700);
+      padding: 6px 10px;
+      border-radius: 50px;
+      border: 1px solid var(--rose-200);
+    }
+    
+    .title {
+      font-weight: 600;
+      margin: 32px 0 8px;
+      font-size: 16px;
+      line-height: 1.4;
+      color: var(--gray-800);
+    }
+    
+    .desc {
+      font-size: 14px;
+      color: var(--gray-600);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      min-height: 20px;
+    }
+    
+    .price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    
+    .price strong {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--rose-600);
+    }
+    
+    .add {
+      border: none;
+      background: var(--gradient-soft);
+      color: var(--rose-700);
+      padding: 10px 16px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .add:hover {
+      background: var(--gradient-rose);
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+    }
+    
+    .add[data-hot="true"] {
+      background: var(--gradient-rose);
+      color: white;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    
+    /* ===== FOOTER / CTA ===== */
+    .footer {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      z-index: 40;
+      display: flex;
+      gap: 12px;
+    }
+    
+    .pill {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 50px;
+      background: var(--gradient-rose);
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: var(--shadow-xl);
+      transition: all 0.3s ease;
+      letter-spacing: 0.3px;
+    }
+    
+    .pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.15), 0 15px 15px -5px rgba(0, 0, 0, 0.08);
+    }
+    
+    .pill small {
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .note {
+      padding: 20px;
+      color: var(--gray-600);
+      font-size: 14px;
+      text-align: center;
+      background: var(--rose-50);
+      border-radius: var(--radius);
+      margin: 20px 0;
+      border: 1px solid var(--rose-200);
+    }
+
+    /* color tags per category */
+    .tag-fritos {
+      background: linear-gradient(135deg, #f59e0b, #f97316);
+    }
+    
+    .tag-assados {
+      background: linear-gradient(135deg, #eab308, #f59e0b);
+    }
+    
+    .tag-paes {
+      background: linear-gradient(135deg, #06b6d4, #0891b2);
+    }
+    
+    .tag-tortas {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    }
+    
+    .tag-doces {
+      background: linear-gradient(135deg, #ec4899, #db2777);
+    }
+
+    /* empty state */
+    .empty {
+      display: none;
+      text-align: center;
+      color: var(--gray-500);
+      padding: 40px 20px;
+      font-size: 16px;
+    }
+    
+    /* WhatsApp button */
+    .whatsapp-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 100px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--rose-300);
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow-xl);
+      z-index: 41;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .whatsapp-btn img {
+      width: 80%;
+      height: 80%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+      border-color: var(--rose-400);
+      box-shadow: 0 25px 35px -5px rgba(244, 114, 182, 0.3), var(--shadow-xl);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 639px) {
+      .hero {
+        padding: 16px;
+      }
+      
+      .brand {
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+      }
+      
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .titles h1 {
+        font-size: 20px;
+      }
+      
+      .subtitle {
+        font-size: 13px;
+      }
+      
+      .input {
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+      
+      .btn {
+        padding: 12px 16px;
+        font-size: 13px;
+      }
+      
+      .card .title {
+        font-size: 15px;
+      }
+      
+      .card .desc {
+        font-size: 13px;
+      }
+      
+      .group h2 {
+        font-size: 24px;
+      }
+      
+      .footer {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+      }
+      
+      .whatsapp-btn {
+        right: 16px;
+        bottom: 84px;
+        width: 56px;
+        height: 56px;
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <img src="logo.png" alt="Rafaela Culinária Logo" />
+      </div>
+      <div class="titles">
+        <h1>Rafaela Culinária</h1>
+        <div class="subtitle">Cozinha caseira com amor ❤️ • (75) 99212‑1110 • @rafaelaculinaria</div>
+      </div>
+    </div>
+    <div class="searchbar" role="search">
+      <input id="q" class="input" type="search" placeholder="� Buscar no cardápio..." aria-label="Buscar item" />
+      <button class="btn" id="clear">Limpar</button>
+    </div>
+  </header>
+
+  <!-- CATEGORIAS / TABS -->
+  <nav class="tabs" aria-label="Categorias">
+    <button class="tab active" data-cat="all">Todas</button>
+    <button class="tab" data-cat="fritos">Fritos</button>
+    <button class="tab" data-cat="assados">Assados</button>
+    <button class="tab" data-cat="paes">Pães & Lanches</button>
+    <button class="tab" data-cat="tortas">Tortas</button>
+    <button class="tab" data-cat="doces">Doces</button>
+  </nav>
+
+  <main class="wrap">
+    <!-- FRITOS -->
+    <section class="group" data-section="fritos">
+      <h2>🌟 Salgados Fritos</h2>
+      <div class="grid" id="grid-fritos">
+        <!-- Items -->
+        <article class="card" data-name="Coxinha" data-cat="fritos">
+          <span class="badge tag-fritos">Clássico</span><span class="minimo">mín. 30 un</span>
+          <div class="title">Coxinha</div>
+          <div class="desc">Massa crocante com frango cremoso.</div>
+          <div class="price"><strong>R$ 1,70</strong><button class="add" data-hot="true">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Bolinha de Queijo" data-cat="fritos">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Bolinha de Queijo</div>
+          <div class="desc">Queijo derretido por dentro. Irresistível!</div>
+          <div class="price"><strong>R$ 1,70</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Kibe" data-cat="fritos">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Kibe</div>
+          <div class="desc">Trigo e carne bem temperada.</div>
+          <div class="price"><strong>R$ 2,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Pastel Frito" data-cat="fritos">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Pastel Frito (Carne, Frango, Pizza)</div>
+          <div class="desc">Massa fininha e bem recheada.</div>
+          <div class="price"><strong>R$ 2,70</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Risole de Camarão" data-cat="fritos">
+          <span class="badge tag-fritos">Premium</span><span class="minimo">mín. 30 un</span>
+          <div class="title">Risole de Camarão</div>
+          <div class="desc">Recheio cremoso com camarões.</div>
+          <div class="price"><strong>R$ 3,50</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Boliviano" data-cat="fritos">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Boliviano</div>
+          <div class="desc"></div>
+          <div class="price"><strong>R$ 3,50</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Bolinho de Bacalhau" data-cat="fritos">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Bolinho de Bacalhau</div>
+          <div class="desc">Peixe nobre e macio.</div>
+          <div class="price"><strong>R$ 3,50</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Bolinho de Feijoada" data-cat="fritos">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Bolinho de Feijoada</div>
+          <div class="desc">Sabor de sábado em uma mordida.</div>
+          <div class="price"><strong>R$ 3,50</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Camarão Encapotado Festa" data-cat="fritos">
+          <span class="badge tag-fritos">Premium</span><span class="minimo">mín. 30 un</span>
+          <div class="title">Camarão Encapotado – Festa</div>
+          <div class="desc">Crosta leve e camarão suculento.</div>
+          <div class="price"><strong>R$ 4,50</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Coxinha de Abóbora e Carne Seca" data-cat="fritos">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Coxinha de Abóbora e Carne Seca</div>
+          <div class="desc">Toque nordestino irresistível.</div>
+          <div class="price"><strong>R$ 3,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Enroladinho de Salsicha Frito" data-cat="fritos">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Enroladinho de Salsicha (Frito)</div>
+          <div class="desc"></div>
+          <div class="price"><strong>R$ 1,70</strong><button class="add">Adicionar</button></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ASSADOS -->
+    <section class="group" data-section="assados">
+      <h2>🌸 Salgados Assados</h2>
+      <div class="grid" id="grid-assados">
+        <article class="card" data-name="Empada de Frango" data-cat="assados">
+          <span class="badge tag-assados">Novo</span><span class="minimo">mín. 30 un</span>
+          <div class="title">Empada de Frango</div>
+          <div class="desc">Massa amanteigada clássica.</div>
+          <div class="price"><strong>R$ 2,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Pão de Queijo Delícia" data-cat="assados">
+          <span class="minimo">mín. 50 un</span>
+          <div class="title">Pão de Queijo Delícia</div>
+          <div class="desc">Receita mineira, casquinha crocante.</div>
+          <div class="price"><strong>R$ 1,80</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Quiche 4 Queijos" data-cat="assados">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Quiche (4 queijos)</div>
+          <div class="desc">Super cremosa.</div>
+          <div class="price"><strong>R$ 2,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Tortelete de Frango" data-cat="assados">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Tortelete de Frango</div>
+          <div class="desc"></div>
+          <div class="price"><strong>R$ 3,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Tropical com Peito de Peru" data-cat="assados">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Tropical com Peito de Peru</div>
+          <div class="desc"></div>
+          <div class="price"><strong>R$ 3,50</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Barquetes" data-cat="assados">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Barquete (Frango / Bacalhau / Camarão)</div>
+          <div class="desc">Escolha seu sabor favorito.</div>
+          <div class="price"><strong>R$ 2,50 – 4,50</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Saltenha" data-cat="assados">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Saltenha</div>
+          <div class="desc"></div>
+          <div class="price"><strong>R$ 3,50</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Ovo de Codorna Surpresa" data-cat="assados">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Ovo de Codorna Surpresa</div>
+          <div class="desc"></div>
+          <div class="price"><strong>R$ 3,50</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Rabo de Tatu de Forno" data-cat="assados">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Rabo de Tatu de Forno</div>
+          <div class="desc"></div>
+          <div class="price"><strong>R$ 3,50</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Mini Pizza" data-cat="assados">
+          <span class="minimo">kit 10 un</span>
+          <div class="title">Mini Pizza</div>
+          <div class="desc">Kit com 10 unidades.</div>
+          <div class="price"><strong>R$ 25,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Pizza Brotinho" data-cat="assados">
+          <div class="title">Pizza Brotinho</div>
+          <div class="desc">1 un R$ 6,50 • 10 un R$ 60,00</div>
+          <div class="price"><strong>R$ 6,50 / 60,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Mini Hamburguer" data-cat="assados">
+          <span class="minimo">mín. 40 un</span>
+          <div class="title">Mini Hambúrguer</div>
+          <div class="desc">Perfeito para festas.</div>
+          <div class="price"><strong>R$ 4,50</strong><button class="add">Adicionar</button></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PÃES & LANCHES -->
+    <section class="group" data-section="paes">
+      <h2>💕 Pães & Lanches</h2>
+      <div class="grid" id="grid-paes">
+        <article class="card" data-name="Enroladinho" data-cat="paes">
+          <div class="title">Enroladinho (Queijo e Presunto / Salsicha)</div>
+          <div class="price"><strong>R$ 2,70</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Esfiha" data-cat="paes">
+          <div class="title">Esfiha (Carne / Frango)</div>
+          <div class="price"><strong>R$ 2,70</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Pão de Metro Frango" data-cat="paes">
+          <span class="badge tag-paes">Serve a galera</span>
+          <div class="title">Pão de Metro (Frango)</div>
+          <div class="desc">Inteiro R$ 200,00 • ½ R$ 120,00</div>
+          <div class="price"><strong>R$ 200,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Pão de Metro Atum" data-cat="paes">
+          <div class="title">Pão de Metro (Atum)</div>
+          <div class="desc">Inteiro R$ 240,00 • ½ R$ 130,00</div>
+          <div class="price"><strong>R$ 240,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Pão de Metro QP" data-cat="paes">
+          <div class="title">Pão de Metro (Queijo/Presunto)</div>
+          <div class="desc">Inteiro R$ 200,00 • ½ R$ 120,00</div>
+          <div class="price"><strong>R$ 200,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Mini Sanduíche Frango" data-cat="paes">
+          <div class="title">Mini Sanduíche Natural (Frango)</div>
+          <div class="price"><strong>R$ 3,70</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Mini Sanduíche Atum" data-cat="paes">
+          <div class="title">Mini Sanduíche Natural (Atum)</div>
+          <div class="price"><strong>R$ 4,70</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Pastel Doce" data-cat="paes">
+          <div class="title">Pastel Doce</div>
+          <div class="price"><strong>R$ 2,00</strong><button class="add">Adicionar</button></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TORTAS -->
+    <section class="group" data-section="tortas">
+      <h2>🌹 Tortas Salgadas</h2>
+      <div class="grid" id="grid-tortas">
+        <article class="card" data-name="Torta Frango 25" data-cat="tortas">
+          <div class="title">Torta Salgada (Frango) – 25 cm</div>
+          <div class="price"><strong>R$ 140,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Torta Frango 30" data-cat="tortas">
+          <div class="title">Torta Salgada (Frango) – 30 cm</div>
+          <div class="price"><strong>R$ 170,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Torta Carne Seca 25" data-cat="tortas">
+          <div class="title">Torta Salgada (Carne Seca) – 25 cm</div>
+          <div class="price"><strong>R$ 210,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Torta Carne Seca 30" data-cat="tortas">
+          <div class="title">Torta Salgada (Carne Seca) – 30 cm</div>
+          <div class="price"><strong>R$ 240,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Torta Camarão 25" data-cat="tortas">
+          <div class="title">Torta Salgada (Camarão) – 25 cm</div>
+          <div class="price"><strong>R$ 220,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Torta Camarão 30" data-cat="tortas">
+          <div class="title">Torta Salgada (Camarão) – 30 cm</div>
+          <div class="price"><strong>R$ 240,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Torta Bacalhau 25" data-cat="tortas">
+          <div class="title">Torta Salgada (Bacalhau) – 25 cm</div>
+          <div class="price"><strong>R$ 210,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Torta Bacalhau 30" data-cat="tortas">
+          <div class="title">Torta Salgada (Bacalhau) – 30 cm</div>
+          <div class="price"><strong>R$ 240,00</strong><button class="add">Adicionar</button></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- DOCES -->
+    <section class="group" data-section="doces">
+      <h2>� Doces da Casa</h2>
+      <div class="grid" id="grid-doces">
+        <article class="card" data-name="Brigadeiros Tradicionais" data-cat="doces">
+          <span class="badge tag-doces">Festa</span><span class="minimo">mín. 30 un</span>
+          <div class="title">Brigadeiro Tradicional / Branco / Casadinho / Beijinho / Moranguinho</div>
+          <div class="price"><strong>R$ 3,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Brigadeiros Especiais" data-cat="doces">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Brigadeiro de Churros / Romeu e Julieta / Paçoca</div>
+          <div class="price"><strong>R$ 4,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Bombons Médio" data-cat="doces">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Bombom Francês / Vermelhinho / Uva Coberta / Bombom de Nozes</div>
+          <div class="price"><strong>R$ 4,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Especiais 5" data-cat="doces">
+          <span class="minimo">mín. 30 un</span>
+          <div class="title">Olho de Sogra Espelhado • Bala Baiana (coco caramelizado)</div>
+          <div class="price"><strong>R$ 5,00</strong><button class="add">Adicionar</button></div>
+        </article>
+        <article class="card" data-name="Morango Requinte" data-cat="doces">
+          <span class="badge tag-doces">Premium</span><span class="minimo">mín. 30 un</span>
+          <div class="title">Morango Banhado (Bombom Requinte)</div>
+          <div class="price"><strong>R$ 6,00</strong><button class="add">Adicionar</button></div>
+        </article>
+      </div>
+    </section>
+
+    <div class="empty" id="empty">
+      Nenhum item encontrado 😔<br>
+      <small>Tente outro termo ou escolha uma categoria diferente</small>
+    </div>
+
+    <div class="note">
+      💳 <strong>Formas de pagamento:</strong> Dinheiro, Pix, Cartão (acréscimo de 5%)<br>
+      📱 <strong>Pedidos:</strong> WhatsApp (75) 99212-1110 ou Instagram @rafaelaculinaria<br>
+      🏠 <strong>Feito com amor em casa</strong> • Ingredientes frescos e selecionados
+    </div>
+  </main>
+
+  <!-- FOOTER/CTA flutuante -->
+  <footer class="footer" aria-label="Ações">
+    <a class="pill" id="cta" target="_blank" rel="noopener">
+      <span>� Fazer Pedido <small id="count">(0)</small></span>
+    </a>
+  </footer>
+
+  <!-- BOTÃO WHATSAPP flutuante -->
+  <a id="zap" class="whatsapp-btn" aria-label="WhatsApp" title="Conversar no WhatsApp">
+    <img src="image.png" alt="WhatsApp" />
+  </a>
+
+  <script>
+    // ====== INTERATIVIDADE ======
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('[data-section]');
+    const cards = document.querySelectorAll('.card');
+    const input = document.getElementById('q');
+    const clear = document.getElementById('clear');
+    const empty = document.getElementById('empty');
+    const zap = document.getElementById('zap');
+    const cta = document.getElementById('cta');
+    const count = document.getElementById('count');
+
+    // Estado simples de carrinho (apenas contagem/itens)
+    const cart = new Map();
+
+    function updateCTA(){
+      const totalItems = Array.from(cart.values()).reduce((a,b)=>a+b,0);
+      count.textContent = `(${totalItems})`;
+      const msg = Array.from(cart.entries()).map(([name,qty])=>`${qty}x ${name}`).join('%0A');
+      const phone = '5575992121110';
+      const texto = `Olá, Rafaela! 😊%0A%0ATenho interesse em fazer um pedido:%0A${msg || '—'}%0A%0AEncontrei seu cardápio online e adorei! 💕%0APodemos conversar sobre os detalhes?`;
+      const url = `https://wa.me/${phone}?text=${texto}`;
+      cta.href = url;
+      zap.href = url;
+    }
+
+    function applyFilters(){
+      const active = document.querySelector('.tab.active').dataset.cat;
+      const term = input.value.trim().toLowerCase();
+      let visible = 0;
+      cards.forEach(card=>{
+        const name = card.dataset.name.toLowerCase();
+        const cat = card.dataset.cat;
+        const byCat = active === 'all' || cat === active;
+        const byTerm = !term || name.includes(term);
+        const show = byCat && byTerm;
+        card.style.display = show ? '' : 'none';
+        if(show) visible++;
+      });
+      empty.style.display = visible ? 'none' : 'block';
+    }
+
+    tabs.forEach(t=>t.addEventListener('click',()=>{
+      document.querySelector('.tab.active').classList.remove('active');
+      t.classList.add('active');
+      applyFilters();
+      // Scroll suave até a seção
+      const sec = t.dataset.cat === 'all' ? document.body : document.querySelector(`[data-section="${t.dataset.cat}"]`);
+      sec && sec.scrollIntoView({behavior:'smooth', block:'start'});
+    }));
+
+    input.addEventListener('input', applyFilters);
+    clear.addEventListener('click', ()=>{ input.value=''; applyFilters(); input.focus(); });
+
+    // Botões Adicionar
+    document.querySelectorAll('.add').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const card = e.target.closest('.card');
+        const name = card.querySelector('.title').textContent.trim();
+        cart.set(name, (cart.get(name)||0)+1);
+        e.target.animate([
+          { transform:'scale(1)', filter:'brightness(1)' },
+          { transform:'scale(1.06)', filter:'brightness(1.2)' },
+          { transform:'scale(1)', filter:'brightness(1)' }
+        ], { duration:320, easing:'cubic-bezier(.2,.8,.2,1)' });
+        updateCTA();
+      })
+    })
+
+    // Init
+    applyFilters();
+    updateCTA();
+  </script>
+</body>
+</html>
